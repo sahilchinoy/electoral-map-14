@@ -9,8 +9,16 @@ function update(raceInfo) {
 }
 
 function handle() {
+	$(this).attr('stroke','black');
+	$(this).attr('stroke-width',20);
+
 	var this_race = data[$(this).attr('id')];
 	update(this_race);
 }
 
+function removeBorder() {
+	$(this).attr('stroke','none');
+}
+
 $('.district').mouseover(handle);
+$('.district').mouseout(removeBorder);
