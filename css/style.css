@@ -1,3 +1,12 @@
 #map {
 	float:left;
 }
+
+#info {
+	width:100px;
+	float:right;
+}
+
+#position1 {
+	font-style: italic;
+}
