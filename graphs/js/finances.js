@@ -1,11 +1,9 @@
-//districts = {'District1': {'Soto-Vigil':[26, 56], 'Maio': [22, 28]}, 'District2': {'Barry': [82, 178], 'Worthington': [69, 88]}, {'District4': {'Arreguin': [41, 49]}}}
-//var data = [4, 8, 15, 16, 23, 42];
+var financeBreakdown = {'Barry': [13050, 16300], 'Maio': [3500, 1350], 'Arreguin': [5455, 1200], 'Worthington': [9492, 2675], 'Soto-Vigil': [3850, 4655]}
+var colors = {'Soto-Vigil': "#3399FF", 'Arreguin': "#00FF00", "Barry": "#3309FF", "Worthington": "#00FF01"}
 
-district1 = [[0, 8505, "#3399FF"], [8505, 13335, "#00FF00"]]
-district1Breakdown = [[0, 26, "#3399FF"], [26, 56, "#3399FF"]]
-
-district2 = [[0, 31700, "#3309FF"], [31700, 44692, "#00FF01"]]
-district4 = [[0, 6705]]
+var district1 = [[0, 8505, "#3399FF", 'Soto-Vigil'], [8505, 13335, "#00FF00", 'Arreguin']]
+var district2 = [[0, 31700, "#3309FF", 'Barry'], [31700, 44692, "#00FF01", 'Worthington']]
+var district4 = [[0, 6705]]
 
 var district = district1
 
@@ -25,35 +23,87 @@ var arc = d3.svg.arc()
    .endAngle(function(d){return dScaler(d[1]);});
 
 function update() {
+	document.getElementById("Candidate1").innerHTML = district[0][3]
+	document.getElementById("Candidate1").style.color = colors[district[0][3]]
+	document.getElementById("Candidate2").innerHTML = district[1][3]
+	document.getElementById("Candidate2").style.color = colors[district[1][3]]
+
 	dScaler = getScale(d3.max(d3.max(district)))
 	var paths = vis.selectAll("path")
 		.data(district);
 	paths.transition()
 	 .duration(1000)
+	 .attr("id", function(d, i){return d[3]})
 	 .attr("d", arc)
 	  .style("fill", function(d){return d[2];})
 	   .attr("transform", "translate(200,100)");
 
 	paths.enter()
 	 .append("path")
+	  .attr("id", function(d){return d[3]})
 	  .attr("d", arc)
 	   .style("fill", function(d){return d[2];})
 	    .attr("transform", "translate(200,100)");
+
 	paths.exit().remove()
 }
 
+function updateCharts(candidateName) {
+	var width = 100,
+    height = 400;
+	var y = d3.scale.linear()
+	    .range([height, 0]);
+	var chart = d3.select("#chart")
+	    .attr("width", width)
+	    .attr("height", height)
+	    .attr("fill", colors[candidateName]);
+
+	data = financeBreakdown[candidateName];
+
+	y.domain([0, 20000]);
+
+	var barWidth = width / 2;
+
+	var bar = chart.selectAll("rect")
+	  .data(data)
+
+	bar.enter()
+	  .append("rect")
+	  .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; })
+
+	bar.transition()
+	  .duration(1000)
+	  .attr("y", function(d) {return y(d); })
+	  .attr("height", function(d) {return height - y(d); })
+	  .attr("width", barWidth - 1)
+
+	bar.exit().remove()
+}
+
 function toggle() {
-	console.log(district)
 	district = (district == district1) ? district2 : district1;
   	update()
+  	// update the chart with correct clicked part of pie chart
 }
 
 update()
+updateCharts(district[0][3])
 
-/**
-function mouseClick() {
-	$(this).attr("stroke", "black")
-	$(this).attr('stroke-width', 20)
-}
-$('.svg_donut').mouseover(mouseClick);
-*/
+$("path").click(function() {
+	console.log(this.id)
+  	updateCharts(this.id)
+  	var paths = d3.selectAll("path")
+	  .attr('stroke','none')
+  	$(this).attr('stroke','black');
+	$(this).attr('stroke-width',2);
+});
+
+
+
+
+
+
+
+
+
+
