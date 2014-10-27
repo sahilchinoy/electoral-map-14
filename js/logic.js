@@ -1,24 +1,17 @@
-function update(raceInfo) {
-	$('#district_name').html(raceInfo.district);
-	$('#challenger').html(raceInfo.challenger.candidateName);
-	$('#incumbent').html(raceInfo.incumbent.candidateName);
-	$('#cTitle').html(raceInfo.challenger.candidateTitle);
-	$('#iTitle').html(raceInfo.incumbent.candidateTitle);
-	$('#cStatement').html(raceInfo.challenger.statement);
-	$('#iStatement').html(raceInfo.incumbent.statement);
-}
+var electoralMap = angular.module('electoralMap', []);
 
-function mouseOn() {
-	$(this).attr("stroke", "black")
-	$(this).attr('stroke-width', 20)
-	var this_race = data[$(this).attr('id')];
-	update(this_race);
-}
+electoralMap.controller('electoralData', function ($scope) {
+  $scope.district = 'District';
+  $scope.candidates = []
 
-function mouseOut() {
-	$(this).attr('stroke', 'none')
-}
+  $scope.update = function(raceInfo) {
+  	$scope.district = raceInfo.district;
+  	$scope.candidates = raceInfo.candidates;
+  	$scope.$apply();
+  }
 
+  $scope.handle = function() {
+  $(".district").attr('stroke','none');
+	$(this).attr('stroke','black');
+	$(this).attr('stroke-width',20);
 
-$('.district').mouseover(mouseOn);
-$('.district').mouseout(mouseOut)
