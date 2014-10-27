@@ -1,4 +1,5 @@
 #map {
+	width: 500px;
 	float:left;
 }
 
@@ -7,6 +8,13 @@
 	float:right;
 }
 
-#position1 {
-	font-style: italic;
+.headshot {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.card {
+	background: #F0F0F5;
+	padding: 10px;
+	margin: 10px;
 }

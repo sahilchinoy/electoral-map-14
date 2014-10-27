@@ -25,20 +25,32 @@ var data = {
 			}
 			]
 		},
+		"district4": {
+			"district": 'District 4',
+			"candidates": [
+			{
+				"position": 'Incumbent',
+				"candidateName": 'Jesse Arreguin',
+				"platforms": ['position1','position2','position3'],
+				"contributionAmt": '2000',
+				"headshot": './img/arreguin.jpg'
+			},
+			]
+		},
 		"district7": {
 			"district": 'District 7',
 			"candidates": [
 			{
 				"position": 'Incumbent',
 				"candidateName": 'Kriss Worthington',
-				"platforms": ['position1','position2','position3'],
+				"platforms": ['Filling more than 50 commission vacancies with students','Implementing policy changes on Telegraph Avenue to attract business','Adding more street lighting, prepaid bus fare machines and easier bus access for wheelchair users should Measure BB pass'],
 				"contributionAmt": '2000',
 				"headshot": './img/worthington.jpg'
 			},
 			{
 				"position": 'Challenger',
 				"candidateName": 'Sean Barry',
-				"platforms": ['position1','position2','position3'],
+				"platforms": ['Creating safe and welcoming streets through working with police','Working to increase affordable housing options','Making improvements to Telegraph Avenue'],
 				"contributionAmt": '2000',
 				"headshot": './img/barry.jpg'
 			}
