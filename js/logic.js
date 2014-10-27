@@ -8,9 +8,17 @@ function update(raceInfo) {
 	$('#iStatement').html(raceInfo.incumbent.statement);
 }
 
-function handle() {
+function mouseOn() {
+	$(this).attr("stroke", "black")
+	$(this).attr('stroke-width', 20)
 	var this_race = data[$(this).attr('id')];
 	update(this_race);
 }
 
-$('.district').mouseover(handle);
+function mouseOut() {
+	$(this).attr('stroke', 'none')
+}
+
+
+$('.district').mouseover(mouseOn);
+$('.district').mouseout(mouseOut)
