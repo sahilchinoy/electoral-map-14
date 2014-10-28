@@ -32,21 +32,21 @@ function update() {
 	 .attr("id", function(d, i){return d[3]})
 	 .attr("d", arc)
 	  .style("fill", function(d){return d[2];})
-	   .attr("transform", "translate(200,100)");
+	   .attr("transform", "translate(100,100)");
 
 	paths.enter()
 	 .append("path")
 	  .attr("id", function(d){return d[3]})
 	  .attr("d", arc)
 	   .style("fill", function(d){return d[2];})
-	    .attr("transform", "translate(200,100)");
+	    .attr("transform", "translate(100,100)");
 
 	paths.exit().remove()
 }
 
 function updateCharts(candidateName) {
 	var width = 100,
-    height = 400;
+    height = 200;
 	var y = d3.scale.linear()
 	    .range([height, 0]);
 	var chart = d3.select("#chart")

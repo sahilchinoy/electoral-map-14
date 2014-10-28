@@ -1,5 +1,5 @@
 #map {
-	width: 500px;
+	width: 100%;
 	float:left;
 }
 
@@ -17,4 +17,10 @@
 	background: #F0F0F5;
 	padding: 10px;
 	margin: 10px;
+}
+
+#svg_donut {
+    float: left;
+    height: 300px;
+    padding: 10px;
 }
