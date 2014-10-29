@@ -1,5 +1,5 @@
 #map {
-	width: 500px;
+	width: 100%;
 	float:left;
 }
 
@@ -19,6 +19,7 @@
 	margin: 10px;
 }
 
+<<<<<<< HEAD
 .axis text {
   font: 10px sans-serif;
   color: black;
@@ -34,3 +35,10 @@
 .x.axis path {
   display: none;
 }
+=======
+#svg_donut {
+    float: left;
+    height: 300px;
+    padding: 10px;
+}
+>>>>>>> aa06866441c1fdcacd22c80cf16fbead9fc5c03b
