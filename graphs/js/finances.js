@@ -22,6 +22,25 @@ var arc = d3.svg.arc()
   .startAngle(function(d){return dScaler(d[0]);})
    .endAngle(function(d){return dScaler(d[1]);});
 
+var margin = {top: 10, right: 20, bottom: 10, left: 20},
+    width = 150 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(10, "$");
+
 function update() {
 	document.getElementById("Candidate1").innerHTML = district[0][3]
 	document.getElementById("Candidate1").style.color = colors[district[0][3]]
@@ -49,14 +68,19 @@ function update() {
 }
 
 function updateCharts(candidateName) {
-	var width = 100,
-    height = 400;
-	var y = d3.scale.linear()
-	    .range([height, 0]);
 	var chart = d3.select("#chart")
-	    .attr("width", width)
-	    .attr("height", height)
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
 	    .attr("fill", colors[candidateName]);
+
+	chart.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  	chart.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
 
 	data = financeBreakdown[candidateName];
 

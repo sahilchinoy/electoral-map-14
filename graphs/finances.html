@@ -1,5 +1,23 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<style>
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+</style>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -8,7 +26,7 @@
 <p id="Candidate2">Hello World!</p>
 
 <svg id="svg_donut" width="350" height="200"></svg>
-<svg id="chart" width="200" height="200"></svg>
+<svg id="chart" width="250" height="200"></svg>
 
 
 
