@@ -25,9 +25,17 @@ var donut = d3.select("#svg_donut")
     .append("g")
     .attr("transform", "translate(" + 300 / 2 + "," + 300 / 2 + ")");
 
+
+function arcTween(a) {
+  var i = d3.interpolate(this._current, a);
+  this._current = i(0);
+  return function(t) {
+    return arc(i(t));
+  };
+}
+
 function update() {
 	var piedata = pie(chartDistrict);
-
 	var path = donut.selectAll("path")
 	    .data(piedata);
 
@@ -36,8 +44,12 @@ function update() {
 	path.enter()
 	  	.append("path")
 	  	.attr("d", arc)
+	  	.each(function(d) {this._current = d;})
 
-	path
+
+	path.transition()
+		.duration(750)
+		.attrTween("d", arcTween)
 		.attr("id", function(d, i){return i})
 	    .style("fill", function(d, i){return colors[chartDistrict[i][1]];});
 
