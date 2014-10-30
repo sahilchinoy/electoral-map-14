@@ -86,7 +86,7 @@ function update() {
 	        d.cy = Math.sin(a) * (radius - 75);
 	        return d.y = Math.sin(a) * (radius - 20);
 	    })
-	    .text(function(d) { return "$" + d.value.toString(); })
+	    .text(function(d) { return d3.format("$,.0f")(d.value); })
 	    .each(function(d) {
 	        var bbox = this.getBBox();
 	        d.sx = d.x - bbox.width/2 - 2;
@@ -96,9 +96,9 @@ function update() {
 	updateCharts(0);
 }
 
-var margin = {top: 20, right: 30, bottom: 30, left: 70},
+var margin = {top: 20, right: 30, bottom: 0, left: 70},
     width = 150 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+    height = 230 - margin.top - margin.bottom;
 
 var y = d3.scale.linear()
     .range([height, 0])
@@ -106,12 +106,13 @@ var y = d3.scale.linear()
 
 var x = d3.scale.ordinal()
 	.rangeRoundBands([0, width], .1)
-	.domain(["In", "Out"])
+	.domain(["In Berkeley", "Out of Berkeley"])
 
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
     .ticks(10, "$")
+    .tickFormat(d3.format("$,.0f"))
 
 var xAxis = d3.svg.axis()
 	.scale(x)
@@ -131,6 +132,13 @@ chart.append("g")
 	 .attr("class", "x axis")
 	 .attr("transform", "translate(0," + height + ")")
 	 .call(xAxis)
+.selectAll("text")  
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", function(d) {
+                return "rotate(-50)" 
+                });
 
 chart.append("text")
 	 .attr("transform", "rotate(-90)")
@@ -138,25 +146,25 @@ chart.append("text")
      .attr("x", -100)
      .attr("dy", ".71em")
      .style("text-anchor", "end")
-     .text("Dollars Donated");
+     .text("$ contributed");
 
 var barWidth = width / 2;
 
 function updateCharts(selected) {
+    console.log('called updatecharts');
 	if (selected > chartDistrict.length-1) {
 		selected = 0;
 	}
 	var chartData = financeBreakdown[chartDistrict[selected][1]];
-
-	chart
-		.attr("fill", colors[chartDistrict[selected][1]])
-
+    
 	var bar = chart.selectAll("rect")
 	  .data(chartData)
+      .attr("fill", colors[chartDistrict[selected][1]])
 
 	bar.exit().remove()
 	bar.enter()
 	  .append("rect")
+        .attr("fill", colors[chartDistrict[selected][1]])
 
 	bar.transition()
 	  .duration(1000)

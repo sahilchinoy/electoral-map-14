@@ -1,5 +1,5 @@
 #map {
-	width: 80%;
+	width: 100%;
 	float:left;
 }
 
@@ -12,7 +12,7 @@
 .card {
 	background: #F0F0F5;
     border: 5px solid white;
-	margin: 0px;
+    height:290px;
 }
 
 .axis text {
