@@ -1,6 +1,7 @@
 #map {
 	width: 100%;
 	float:left;
+  cursor: pointer;
 }
 
 #info {
