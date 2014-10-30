@@ -168,10 +168,10 @@ function updateCharts(selected) {
 
 	bar.transition()
 	  .duration(1000)
-	  .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; })
+	  .attr("transform", function(d, i) { return "translate(" + (i * barWidth + 1) + ",0)"; })
 	  .attr("y", function(d) {return y(d); })
 	  .attr("height", function(d) {return height - y(d); })
-	  .attr("width", barWidth - 1)
+	  .attr("width", barWidth - 2)
 }
 //update();
 /**
