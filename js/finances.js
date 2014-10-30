@@ -45,6 +45,7 @@ function changeWithClick(d, i) {
     d3.select(this)
       .attr('stroke', 'black')
       .attr('stroke-width', 2);
+    changeActive(this.id);
 }
 
 function update() {
@@ -63,7 +64,7 @@ function update() {
 	path
 	    .classed("donut_arc", true)
 		.attr("d", arc)
-		.attr("id", function(d, i){return i})
+		.attr("id", function(d, i){return chartDistrict[i][1]})
 	    .style("fill", function(d, i){return colors[chartDistrict[i][1]];});
 
 	var text = donut.selectAll("text")
@@ -151,7 +152,6 @@ chart.append("text")
 var barWidth = width / 2;
 
 function updateCharts(selected) {
-    console.log('called updatecharts');
 	if (selected > chartDistrict.length-1) {
 		selected = 0;
 	}

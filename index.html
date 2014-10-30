@@ -14642,7 +14642,7 @@ gMvg/wMHBDQFX1DPYAAAAABJRU5ErkJggg==">
     </div>
 
     <div class="col-md-12">
-		<div ng-repeat="candidate in candidates" ng-style="{{candidate.color}}" class="card col-md-3" >
+		<div ng-repeat="candidate in candidates" ng-mouseover="pieMouseover(candidate)" ng-style="{{candidate.color}}" ng-class="isActive(candidate)" class="card col-md-3" >
             <table style="width:100%;">
                 <tr>
                     <td style="width:50%; vertical-align: middle; height: 150px;">
