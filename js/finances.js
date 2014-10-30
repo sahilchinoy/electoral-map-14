@@ -1,11 +1,14 @@
-var financeBreakdown = {'Barry': [14450, 17250], 'Maio': [8000, 1350], 'Arreguin': [5505, 1200], 'Worthington': [9742, 3250], 'Soto-Vigil': [3850, 4655]}
-var colors = {'Soto-Vigil': "#3399FF", 'Arreguin': "#00FF00", "Barry": "#3309FF", "Worthington": "#00FF01"}
+var financeBreakdown = {'Barry': [17200, 21200], 'Maio': [20450, 4400], 'Arreguin': [18015, 5250], 'Worthington': [21859, 9550],
+ 'Soto-Vigil': [10350, 10760], 'Beier': [12595, 2050], 'Cohen': [26715, 6150], 'McCormick': [12775, 2700], 'Droste': [17325, 24345]}
+var colors = {'Soto-Vigil': "#3399FF", 'Arreguin': "#12FF00", "Barry": "#3309FF", "Worthington": "#00FF01",
+			  'Beier': "#6644FF", 'Cohen': "#3349FF", 'McCormick': "#3309FF", "Droste": "#00FF01" }
 
-var chartDistrict1 = [[8505, 'Soto-Vigil'], [9350, 'Maio']]
-var chartDistrict7 = [[31700, 'Barry'], [12922, 'Worthington']]
-var chartDistrict4 = [[6705, 'Arreguin']]
+var chartDistrict1 = [[21110, 'Soto-Vigil'], [24850, 'Maio']]
+var chartDistrict7 = [[38400, 'Barry'], [31409, 'Worthington']]
+var chartDistrict4 = [[23265, 'Arreguin']]
+var chartDistrict8 = [[14645, 'Beier'],[32865, 'Cohen'],[15475, 'McCormick'],[41670, 'Droste']]
 
-var chartDistrict = chartDistrict1;
+var chartDistrict = chartDistrict8;
 
 /** myScale(0) = 0, myScale(max) = 2*pi */
 function getScale(totalContributions) {
@@ -20,36 +23,47 @@ var arc = d3.svg.arc()
     .outerRadius(radius - 50);
 
 var donut = d3.select("#svg_donut")
-    .attr("width", 300)
-    .attr("height", 300)
+    .attr("width", 370)
+    .attr("height", 370)
     .append("g")
     .attr("transform", "translate(" + 300 / 2 + "," + 300 / 2 + ")");
 
+donut.append("defs").append("marker")
+    .attr("id", "circ")
+    .attr("markerWidth", 6)
+    .attr("markerHeight", 6)
+    .attr("refX", 3)
+    .attr("refY", 3)
+    .append("circle")
+    .attr("cx", 3)
+    .attr("cy", 3)
+    .attr("r", 3);
 
-function arcTween(a) {
-  var i = d3.interpolate(this._current, a);
-  this._current = i(0);
-  return function(t) {
-    return arc(i(t));
-  };
+function changeWithClick(d, i) {
+	updateCharts(i)
+	var paths = donut.selectAll("path")
+		  .attr('stroke','none')
+    d3.select(this)
+      .attr('stroke', 'black')
+      .attr('stroke-width', 2);
 }
 
 function update() {
 	var piedata = pie(chartDistrict);
 	var path = donut.selectAll("path")
 	    .data(piedata);
-
 	path.exit().remove();
-
 	path.enter()
 	  	.append("path")
-	  	.attr("d", arc)
-	  	.each(function(d) {this._current = d;})
-
-
-	path.transition()
-		.duration(750)
-		.attrTween("d", arcTween)
+	  	.classed("donut_arc", true)
+	  	.on("click",changeWithClick)
+	path.attr("stroke", "none")
+	path.filter(function(d, i) {return i == 0})
+		.attr('stroke', 'black')
+		.attr('stroke-width', 2);
+	path
+	    .classed("donut_arc", true)
+		.attr("d", arc)
 		.attr("id", function(d, i){return i})
 	    .style("fill", function(d, i){return colors[chartDistrict[i][1]];});
 
@@ -80,46 +94,16 @@ function update() {
 	        d.ox = d.x + bbox.width/2 + 2;
 	        d.sy = d.oy = d.y + 5;
 	    });
-
-	donut.append("defs").append("marker")
-	    .attr("id", "circ")
-	    .attr("markerWidth", 6)
-	    .attr("markerHeight", 6)
-	    .attr("refX", 3)
-	    .attr("refY", 3)
-	    .append("circle")
-	    .attr("cx", 3)
-	    .attr("cy", 3)
-	    .attr("r", 3);
-
-	var path_pointer = donut.selectAll("path.pointer")
-		.data(piedata)
-	path_pointer
-		.enter()
-	    .append("path")
-	    .attr("class", "pointer")
-	    .style("fill", "none")
-	    .style("stroke", "black")
-	    .attr("marker-end", "url(#circ)")
-
-	path_pointer
-		.attr("d", function(d) {
-	        if(d.cx > d.ox) {
-	            return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + d.cx + "," + d.cy;
-	        } else {
-	            return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + d.cx + "," + d.cy;
-	        }
-	    });
-	updateCharts();
+	updateCharts(0);
 }
 
-var margin = {top: 20, right: 30, bottom: 30, left: 50},
+var margin = {top: 20, right: 30, bottom: 30, left: 70},
     width = 150 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
 var y = d3.scale.linear()
     .range([height, 0])
-	.domain([0, 25000]);
+	.domain([0, 30000]);
 
 var x = d3.scale.ordinal()
 	.rangeRoundBands([0, width], .1)
@@ -151,18 +135,18 @@ chart.append("g")
 
 chart.append("text")
 	 .attr("transform", "rotate(-90)")
-     .attr("y", 10)
+     .attr("y", -70)
+     .attr("x", -100)
      .attr("dy", ".71em")
      .style("text-anchor", "end")
      .text("Dollars Donated");
 
 var barWidth = width / 2;
 
-function updateCharts() {
-	if (selected > chartDistrict.length) {
+function updateCharts(selected) {
+	if (selected > chartDistrict.length-1) {
 		selected = 0;
 	}
-
 	var chartData = financeBreakdown[chartDistrict[selected][1]];
 
 	chart
@@ -182,18 +166,27 @@ function updateCharts() {
 	  .attr("height", function(d) {return height - y(d); })
 	  .attr("width", barWidth - 1)
 }
-
-var selected = 0;
 update();
+/**
+	var path_pointer = donut.selectAll("path.pointer")
+		.data(piedata)
+	path_pointer.exit().remove()
+	path_pointer
+		.enter()
+	    .append("path")
+	    .attr("class", "pointer")
+	    .style("fill", "none")
+	    .style("stroke", "black")
+	    .attr("marker-end", "url(#circ)")
 
-$("path").click(function() {
-	selected = this.id
-  	updateCharts();
-  	var paths = d3.selectAll("path")
-	  .attr('stroke','none')
-  	$(this).attr('stroke','black');
-	$(this).attr('stroke-width',2);
-});
+	path_pointer
+		.attr("d", function(d) {
+	        if(d.cx > d.ox) {
+	            return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + d.cx + "," + d.cy;
+	        } else {
+	            return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + d.cx + "," + d.cy;
+	        }
+	    });*/
 
 
 
