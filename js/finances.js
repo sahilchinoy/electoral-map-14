@@ -55,7 +55,7 @@ function update() {
 	path.enter()
 	  	.append("path")
 	  	.classed("donut_arc", true)
-	  	.on("click",changeWithClick)
+	  	.on("mouseover",changeWithClick)
 	path.attr("stroke", "none")
 	path.filter(function(d, i) {return i == 0})
 		.attr('stroke', 'black')
