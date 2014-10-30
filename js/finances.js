@@ -1,7 +1,6 @@
 var financeBreakdown = {'Barry': [17200, 21200], 'Maio': [20450, 4400], 'Arreguin': [18015, 5250], 'Worthington': [21859, 9550],
  'Soto-Vigil': [10350, 10760], 'Beier': [12595, 2050], 'Cohen': [26715, 6150], 'McCormick': [12775, 2700], 'Droste': [17325, 24345]}
-var colors = {'Soto-Vigil': "#3399FF", 'Arreguin': "#12FF00", "Barry": "#3309FF", "Worthington": "#00FF01",
-			  'Beier': "#6644FF", 'Cohen': "#3349FF", 'McCormick': "#3309FF", "Droste": "#00FF01" }
+var colors = {'Soto-Vigil': "#fdcdac", 'Arreguin': "#b3e2cd", "Barry": "#fdcdac", "Worthington": "#b3e2cd", 'Beier': "#b3e2cd", 'Cohen': "#fdcdac", 'McCormick': "#cbd5e8", "Droste": "#f4cae4", "Maio":"#b3e2cd" }
 
 var chartDistrict1 = [[21110, 'Soto-Vigil'], [24850, 'Maio']]
 var chartDistrict7 = [[38400, 'Barry'], [31409, 'Worthington']]
@@ -166,7 +165,7 @@ function updateCharts(selected) {
 	  .attr("height", function(d) {return height - y(d); })
 	  .attr("width", barWidth - 1)
 }
-update();
+//update();
 /**
 	var path_pointer = donut.selectAll("path.pointer")
 		.data(piedata)

@@ -1,7 +1,7 @@
 var electoralMap = angular.module('electoralMap', []);
 
 electoralMap.controller('electoralData', function ($scope) {
-  $scope.district = 'District';
+  $scope.district = 'Click a district to begin.';
   $scope.candidates = []
 
   $scope.update = function(raceInfo) {
@@ -27,7 +27,7 @@ electoralMap.controller('electoralData', function ($scope) {
   $scope.handle = function() {
     $(".district").attr('stroke','none');
     $(this).attr('stroke','black');
-    $(this).attr('stroke-width',20);
+    $(this).attr('stroke-width', 20);
 
     var this_race = data[$(this).attr('id')];
     $scope.update(this_race);

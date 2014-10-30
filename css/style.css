@@ -1,5 +1,5 @@
 #map {
-	width: 100%;
+	width: 80%;
 	float:left;
 }
 
@@ -8,15 +8,11 @@
 	float:right;
 }
 
-.headshot {
-	width: 80%;
-	margin: 0 auto;
-}
 
 .card {
 	background: #F0F0F5;
-	padding: 10px;
-	margin: 10px;
+    border: 5px solid white;
+	margin: 0px;
 }
 
 .axis text {
@@ -41,3 +37,6 @@
     padding: 10px;
 }
 
+.headshot {
+    width: 100px;
+}

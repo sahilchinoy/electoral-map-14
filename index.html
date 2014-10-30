@@ -14642,16 +14642,18 @@ gMvg/wMHBDQFX1DPYAAAAABJRU5ErkJggg==">
     </div>
 
     <div class="col-md-12">
-		<div ng-repeat="candidate in candidates" class="card col-md-4" >
-      <div class="col-md-4">
-      <img class="headshot img-circle center" ng-src="{{candidate.headshot}}"></img>
-      </div>
-
-      <div class="col-md-8">
-			<h3>{{candidate.candidateName}}</h3>
-			<h3 class="small">{{candidate.position}}</h3>
-      </div>
-
+		<div ng-repeat="candidate in candidates" ng-style="{{candidate.color}}" class="card col-md-3" >
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:50%; vertical-align: middle; height: 150px;">
+                        <img class="headshot img-circle center" ng-src="{{candidate.headshot}}"></img>
+                    </td>
+                    <td>
+                        <h3>{{candidate.candidateName}}</h3>
+            <h3 class="small">{{candidate.position}}</h3>
+                    </td>
+                </tr>
+            </table>
       <div class="col-md-12">
       <ul>
         <li>{{candidate.platforms[0]}}</li>
