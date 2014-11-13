@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="electoralMap" lang="en">
+<html >
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +8,12 @@
 
     <!-- Bootstrap -->
     
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="./css/bootstrap.min.css" rel="stylesheet">-->
     <link href="./css/style.css" rel="stylesheet">
 
   </head>
-  <body>
-
-  		<div class="col-md-5">
+  <div ng-app="electoralMap" lang="en">
+  		<div>
             
            <svg id="map" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 3168 2448" enable-background="new 0 0 3168 2448" xml:space="preserve">
 <g id="Layer_1">
@@ -14634,15 +14633,15 @@ gMvg/wMHBDQFX1DPYAAAAABJRU5ErkJggg==">
 
 		<div ng-controller="electoralData">
 
-    <div class="col-md-7">
+    <div>
 		  <h1>{{district}}</h1>
         <br>
       <svg id="svg_donut"></svg>
       <svg id="chart" width="200" height="200"></svg>
     </div>
 
-    <div class="col-md-12">
-		<div ng-repeat="candidate in candidates" ng-mouseover="pieMouseover(candidate)" ng-style="{{candidate.color}}" ng-class="isActive(candidate)" class="card col-md-3" >
+    <div style="float:left; width:100%;">
+		<div ng-repeat="candidate in candidates" ng-mouseover="pieMouseover(candidate)" ng-style="{{candidate.color}}" ng-class="isActive(candidate)" class="card" >
             <table style="width:100%;">
                 <tr>
                     <td style="width:50%; vertical-align: middle; height: 150px;">
@@ -14650,12 +14649,12 @@ gMvg/wMHBDQFX1DPYAAAAABJRU5ErkJggg==">
                     </td>
                     <td>
                         <h3>{{candidate.candidateName}}</h3>
-            <h3 class="small">{{candidate.position}}</h3>
+                       <h4>{{candidate.position}}</h4>
                     </td>
                 </tr>
             </table>
-      <div class="col-md-12">
-      <ul style="margin-left:-40px">
+      <div>
+      <ul>
         <li>{{candidate.platforms[0]}}</li>
         <li>{{candidate.platforms[1]}}</li>
         <li>{{candidate.platforms[2]}}</li>
@@ -14667,13 +14666,11 @@ gMvg/wMHBDQFX1DPYAAAAABJRU5ErkJggg==">
 		</div>
     </div>
 
-	<script src="js/jquery.min.js"></script>
-  <script src="js/d3.js"></script>
-	<script src="js/angular.min.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/finances.js"></script>
-	<script src="js/logic.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="http://www.dailycal.org/assets/uploads/2014/11/data.js"></script>
+    <script src="http://www.dailycal.org/assets/uploads/2014/11/finances.js"></script>
+	<script src="http://www.dailycal.org/assets/uploads/2014/11/logic.js"></script>
   
-    <script src="js/bootstrap.min.js"></script>
-  </body>
-</html>
+  </div>
