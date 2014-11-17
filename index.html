@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Electoral Map</title>
 
-    <!-- Bootstrap -->
-    
-    <!--<link href="./css/bootstrap.min.css" rel="stylesheet">-->
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
   </head>
   <div ng-app="electoralMap" lang="en">
@@ -14644,11 +14641,11 @@ gMvg/wMHBDQFX1DPYAAAAABJRU5ErkJggg==">
 		<div ng-repeat="candidate in candidates" ng-mouseover="pieMouseover(candidate)" ng-style="{{candidate.color}}" ng-class="isActive(candidate)" class="card" >
             <table style="width:100%;">
                 <tr>
-                    <td style="width:50%; vertical-align: middle; height: 150px;">
+                    <td style="width:50%; vertical-align: middle; height: 130px;">
                         <img class="headshot img-circle center" ng-src="{{candidate.headshot}}"></img>
                     </td>
                     <td>
-                        <h3>{{candidate.candidateName}}</h3>
+                        <h3 style="font-weight: bold;">{{candidate.candidateName}}</h3>
                        <h4>{{candidate.position}}</h4>
                     </td>
                 </tr>
@@ -14669,8 +14666,8 @@ gMvg/wMHBDQFX1DPYAAAAABJRU5ErkJggg==">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="http://d3js.org/d3.v3.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-    <script src="http://www.dailycal.org/assets/uploads/2014/11/data.js"></script>
-    <script src="http://www.dailycal.org/assets/uploads/2014/11/finances.js"></script>
-	<script src="http://www.dailycal.org/assets/uploads/2014/11/logic.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/finances.js"></script>
+	<script src="js/logic.js"></script>
   
   </div>

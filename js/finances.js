@@ -1,11 +1,11 @@
-var financeBreakdown = {'Barry': [14275, 19675], 'Maio': [12450, 3050], 'Arreguin': [7005, 2850], 'Worthington': [12567, 6050],
- 'Soto-Vigil': [5450, 4955], 'Beier': [12595, 2050], 'Cohen': [21020, 4900], 'McCormick': [12775, 2700], 'Droste': [12545, 20820], 'Mitchell': [0, 0]}
+var financeBreakdown = {'Barry': [17875, 19465], 'Maio': [15750, 4800], 'Arreguin': [7505, 3950], 'Worthington': [15877, 7800],
+ 'Soto-Vigil': [5450, 5405], 'Beier': [15895, 2500], 'Cohen': [22420, 5500], 'McCormick': [13475, 2800], 'Droste': [12795, 21470], 'Mitchell': [0, 0]}
 var colors = {'Soto-Vigil': "#fdcdac", 'Arreguin': "#b3e2cd", "Barry": "#fdcdac", "Worthington": "#b3e2cd", 'Beier': "#b3e2cd", 'Cohen': "#fdcdac", 'McCormick': "#cbd5e8", "Droste": "#f4cae4", "Maio":"#b3e2cd" }
 
-var chartDistrict1 = [[10405, 'Soto-Vigil'], [15500, 'Maio'], [0, 'Mitchell']]
-var chartDistrict7 = [[33950, 'Barry'], [18617, 'Worthington']]
-var chartDistrict4 = [[9855, 'Arreguin']]
-var chartDistrict8 = [[14645, 'Beier'],[25920, 'Cohen'],[15475, 'McCormick'],[33365, 'Droste']]
+var chartDistrict1 = [[10855, 'Soto-Vigil'], [20550, 'Maio'], [0, 'Mitchell']]
+var chartDistrict7 = [[37340, 'Barry'], [23677, 'Worthington']]
+var chartDistrict4 = [[11455, 'Arreguin']]
+var chartDistrict8 = [[18395, 'Beier'],[27920, 'Cohen'],[16275, 'McCormick'],[34265, 'Droste']]
 
 var chartDistrict = chartDistrict8;
 

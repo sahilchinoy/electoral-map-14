@@ -86,7 +86,7 @@ var data = {
 				"candidateName": 'Jacquelyn McCormick',
                 "lastName": 'McCormick',
 				"platforms": ['Form a fiscal action plan','Improve public safety','Support commmunity-based decision making'],
-				"headshot": './img/mccormick.jpg',
+				"headshot": 'http://www.dailycal.org/assets/uploads/2014/11/mccormick.jpg',
                 "color": "{'background': 'rgba(203,213,232,0.5)'}"
 			},
 			{
